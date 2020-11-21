@@ -1,12 +1,12 @@
 // Canvas Setup
 const canvas = document.getElementById('canvas1');
 const ctx = canvas.getContext('2d');
-canvas.width = 800;
-canvas.height = 500;
+canvas.width = 900;
+canvas.height = 600;
 
 let score = 0;
 let gameFrame = 0;
-ctx.font = '50px Georgia';
+ctx.font = '40px Georgia';
 
 // Mouse Interactivity
 let canvasPosition = canvas.getBoundingClientRect();
@@ -15,10 +15,10 @@ const mouse = {
     y: canvas.height / 2,
     click: false
 }
-canvas.addEventListener('mousedown', function (event) {
+canvas.addEventListener('mousedown', function (e) {
     mouse.click = true;
-    mouse.x = event.x - canvasPosition.left;
-    mouse.y = event.y - canvasPosition.top;
+    mouse.x = e.x - canvasPosition.left;
+    mouse.y = e.y - canvasPosition.top;
 });
 canvas.addEventListener('mouseup', function () {
     mouse.click = false;
@@ -27,7 +27,7 @@ canvas.addEventListener('mouseup', function () {
 // Player
 class Player {
     constructor() {
-        this.x = canvas.width;
+        this.x = 0;
         this.y = canvas.height / 2;
         this.radius = 50;
         this.angle = 0;
@@ -41,10 +41,10 @@ class Player {
         const dx = this.x - mouse.x;
         const dy = this.y - mouse.y;
         if (mouse.x != this.x) {
-            this.x -= dx / 30;
+            this.x -= dx / 20;
         }
         if (mouse.y != this.y) {
-            this.y -= dy / 30;
+            this.y -= dy / 20;
         }
     }
     draw() {
